@@ -1,0 +1,76 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="BusBookingMaster.master.cs" Inherits="BusBookingProject.BusBookingMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>SLTB</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="Default.aspx">SLTB</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold" runat="server" href="Default.aspx">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold" runat="server" href="AboutUs.aspx">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold" runat="server" href="Home.aspx" id="A2" title="Search Buses">Search Buses</a>
+                        </li>
+                        <% if (Session["UserID"] != null) { %>
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold" runat="server" href="BookingReport.aspx" id="lnkDashboard">Booking Report</a>
+                        </li>
+                        <% } %>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <% if (Session["UserID"] == null) { %>
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold" runat="server" href="Admin/AdminLogin.aspx">Admin</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold" runat="server" href="UserRegistration.aspx" id="linkRegister"><i class="fas fa-user"></i> Registration</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link font-weight-bold" runat="server" href="Login.aspx" id="linkLogin" title="Login">Login</a>
+                        </li>
+                        <% } else { %>
+                        <li class="nav-item">
+                            <span class="navbar-text">Hi!!! <asp:Label ID="lblName" runat="server" Font-Bold="true"></asp:Label></span>
+                        </li>
+                        <li class="nav-item">
+                            <asp:Button ID="btnLogout" runat="server" CssClass="btn btn-outline-success ml-2" Text="Logout" OnClick="btnLogout_Click" />
+                        </li>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <main role="main" class="container mt-5">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </main>
+        <footer class="footer bg-light text-center py-3">
+            <div class="container">
+                <span class="text-muted">&copy; <%: DateTime.Now.Year %> Online Bus Booking</span>
+            </div>
+        </footer>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>
